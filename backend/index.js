@@ -35,9 +35,14 @@ app.use(express.json());
 
 const io = new Server(server, {
   cors: {
-    origin: "https://mind-link-eight.vercel.app/",
+    origin: [
+      "http://localhost:3000",
+      "https://mind-link-eight.vercel.app",
+    ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
+  transports: ["polling", "websocket"], // ✅ ADD THIS
 });
 
 const userSocketMap = {};
